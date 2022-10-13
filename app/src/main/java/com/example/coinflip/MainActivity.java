@@ -1,7 +1,9 @@
 package com.example.coinflip;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +49,29 @@ public class MainActivity extends AppCompatActivity {
                     wins.setText("Győzelem: "+winCount);
                 }
                 triesCount++;
+                if(triesCount==5){
+                    AlertDialog.Builder end;
+                    end = new AlertDialog.Builder(MainActivity.this);
+                    if(winCount>lossCount){
+                        end.setTitle("Nyertél");
+                    }else{
+                        end.setTitle("Vereség");
+
+                    }
+                    end.setMessage("Szeretnél új játékot kezdeni?");
+                    end.setNegativeButton("Nem", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+                    end.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            init();
+                        }
+                    });
+                }
             }
         });
         tails.setOnClickListener(new View.OnClickListener() {
