@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     wins.setText("Győzelem: "+winCount);
                 }
                 triesCount++;
+                tries.setText("Dobások: "+triesCount);
                 if(triesCount==5){
                     AlertDialog.Builder end;
                     end = new AlertDialog.Builder(MainActivity.this);
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         end.setTitle("Vereség");
 
                     }
+                    end.setCancelable(false);
                     end.setMessage("Szeretnél új játékot kezdeni?");
                     end.setNegativeButton("Nem", new DialogInterface.OnClickListener() {
                         @Override
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                             init();
                         }
                     });
+                    end.create().show();
                 }
             }
         });
